@@ -6,16 +6,18 @@ on:
 
 jobs:
   gitleaks:
-     runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
-      - name: Caisse
-        uses: actions/checkout@v4
-
-      - name: Lancer une analyse Gitleaks
-        uses: zricethezav/gitleaks-action@v2
-
-      - name: Télécharger le rapport Gitleaks
-        uses: actions/upload-artifact@v4
-        with:
-          name: gitleaks-report
-          path: results.sarif
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Lancer une analyse Gitleaks
+      uses: zricethezav/gitleaks-action@v2
+      with:
+        sarif-report: results.sarif
+    - name: Télécharger le rapport Gitleaks
+      uses: actions/upload-artifact@v4
+      with:
+        name: gitleaks-report
+        path: results.sarif
