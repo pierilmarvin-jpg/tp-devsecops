@@ -13,3 +13,9 @@ jobs:
 
       - name: Run Gitleaks scan
         uses: zricethezav/gitleaks-action@v2
+
+- name: Upload Gitleaks report
+  uses: actions/upload-artifact@v4
+  with:
+    name: gitleaks-report
+    path: results.sarif
