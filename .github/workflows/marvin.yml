@@ -1,21 +1,21 @@
-nom: Pipeline CI
+name: Pipeline CI
 
-sur:
-  pousser:
+on:
+  push:
     branches: [principale]
 
-emplois:
+jobs:
   gitleaks:
-    fonctionne sous: ubuntu-latest
-    étapes:
-      - nom: Caisse
-        utilise: actions/checkout@v4
+     runs-on: ubuntu-latest
+    steps:
+      - name: Caisse
+        uses: actions/checkout@v4
 
-      - nom: Lancer une analyse Gitleaks
-        utilise: zricethezav/gitleaks-action@v2
+      - name: Lancer une analyse Gitleaks
+        uses: zricethezav/gitleaks-action@v2
 
-      - nom: Télécharger le rapport Gitleaks
-        utilise: actions/upload-artifact@v4
-        avec:
-          nom: rapport-gitleaks
+      - name: Télécharger le rapport Gitleaks
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapport-gitleaks
           chemin: résultats.sarif
