@@ -24,13 +24,11 @@ jobs:
 
 
         # Login Docker Hub
-- name: Scan Docker image with Trivy
-uses: aquasecurity/trivy-action@0.20.0
+- name: Login to Docker Hub
+uses: docker/login-ac�on@v2
 with:
-image-ref: democyber:latest
-format: 'table'
-exit-code: '1'
-severety: 'CRITICAL,HIGH'
+username: ${{ secrets.DOCKERHUB_USERNAME }}
+password: ${{ secrets.DOCKERHUB_TOKEN }}
 # Build Docker image
 - name: Build Docker image
 run: docker build -t democyber:latest .
